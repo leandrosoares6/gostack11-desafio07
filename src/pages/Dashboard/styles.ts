@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import ReactPlaceholder from 'react-placeholder';
+import 'react-placeholder/lib/reactPlaceholder.css';
+
 interface CardProps {
   total?: boolean;
 }
@@ -47,49 +50,28 @@ export const Card = styled.div`
   }
 `;
 
-export const TableContainer = styled.section`
+export const BalanceInfoPlaceholder = styled(ReactPlaceholder)`
+  margin-top: 14px;
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 54px;
+  border-radius: 5px;
+`;
+
+export const TableGrid = styled.div`
   margin-top: 64px;
 
-  table {
-    width: 100%;
-    border-spacing: 0 8px;
+  > section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 
-    th {
+    strong {
       color: #969cb3;
       font-weight: normal;
       padding: 20px 32px;
       text-align: left;
       font-size: 16px;
       line-height: 24px;
-    }
-
-    td {
-      padding: 20px 32px;
-      border: 0;
-      background: #fff;
-      font-size: 16px;
-      font-weight: normal;
-      color: #969cb3;
-
-      &.title {
-        color: #363f5f;
-      }
-
-      &.income {
-        color: #12a454;
-      }
-
-      &.outcome {
-        color: #e83f5b;
-      }
-    }
-
-    td:first-child {
-      border-radius: 8px 0 0 8px;
-    }
-
-    td:last-child {
-      border-radius: 0 8px 8px 0;
     }
   }
 `;

@@ -1,7 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Link, LinkProps } from 'react-router-dom';
 
 interface ContainerProps {
   size?: 'small' | 'large';
+}
+
+interface LinkWithSeletedProps extends LinkProps {
+  selected?: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -33,4 +38,13 @@ export const Container = styled.div<ContainerProps>`
       }
     }
   }
+`;
+
+export const LinkWithSeleted = styled(Link)<LinkWithSeletedProps>`
+  ${props =>
+    props.selected === true &&
+    css`
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ff872c;
+    `}
 `;
