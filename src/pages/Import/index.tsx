@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import filesize from 'filesize';
@@ -22,7 +22,7 @@ const Import: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
   const history = useHistory();
 
-  async function handleUpload(): Promise<void> {
+  const handleUpload = useCallback(async () => {
     const data = new FormData();
 
     if (!uploadedFiles.length) return;
@@ -38,9 +38,9 @@ const Import: React.FC = () => {
     } catch (err) {
       console.log(err.response.error);
     }
-  }
+  }, [history, uploadedFiles]);
 
-  function submitFile(files: File[]): void {
+  const submitFile = useCallback((files: File[]) => {
     const uploadFiles = files.map(file => ({
       file,
       name: file.name,
@@ -48,7 +48,15 @@ const Import: React.FC = () => {
     }));
 
     setUploadedFiles(uploadFiles);
-  }
+  }, []);
+
+  const handleRemoveFile = useCallback(
+    (filename: string) => {
+      const updatedFiles = uploadedFiles.filter(file => file.name !== filename);
+      setUploadedFiles(updatedFiles);
+    },
+    [uploadedFiles],
+  );
 
   return (
     <>
@@ -57,7 +65,9 @@ const Import: React.FC = () => {
         <Title>Importar uma transação</Title>
         <ImportFileContainer>
           <Upload onUpload={submitFile} />
-          {!!uploadedFiles.length && <FileList files={uploadedFiles} />}
+          {!!uploadedFiles.length && (
+            <FileList removeFile={handleRemoveFile} files={uploadedFiles} />
+          )}
 
           <Footer>
             <p>

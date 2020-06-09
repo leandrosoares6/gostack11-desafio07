@@ -9,9 +9,13 @@ interface FileProps {
 
 interface FileListProps {
   files: FileProps[];
+  removeFile: Function;
 }
 
-const FileList: React.FC<FileListProps> = ({ files }: FileListProps) => {
+const FileList: React.FC<FileListProps> = ({
+  files,
+  removeFile,
+}: FileListProps) => {
   return (
     <Container>
       {files.map(uploadedFile => (
@@ -21,6 +25,9 @@ const FileList: React.FC<FileListProps> = ({ files }: FileListProps) => {
               <strong>{uploadedFile.name}</strong>
               <span>{uploadedFile.readableSize}</span>
             </div>
+            <button type="button" onClick={() => removeFile(uploadedFile.name)}>
+              remover
+            </button>
           </FileInfo>
         </li>
       ))}

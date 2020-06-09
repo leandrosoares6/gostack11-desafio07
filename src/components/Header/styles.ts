@@ -10,7 +10,7 @@ interface LinkWithSeletedProps extends LinkProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: #5636d3;
+  background: ${props => props.theme.colors.primary};
   padding: 30px 0;
 
   header {
@@ -45,6 +45,6 @@ export const LinkWithSeleted = styled(Link)<LinkWithSeletedProps>`
     props.selected === true &&
     css`
       padding-bottom: 10px;
-      border-bottom: 1px solid #ff872c;
+      border-bottom: 1px solid ${props.theme.colors.secondary};
     `}
 `;

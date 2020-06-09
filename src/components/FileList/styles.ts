@@ -22,9 +22,11 @@ export const FileInfo = styled.div`
   flex: 1;
 
   button {
+    padding: 3px 16px;
     border: 0;
-    background: transparent;
-    color: #e83f5b;
+    border-radius: 4px;
+    background: #e83f5b;
+    color: #fff;
     margin-left: 5px;
     cursor: pointer;
   }

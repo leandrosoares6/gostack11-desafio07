@@ -1,6 +1,11 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, {
+  css,
+  FlattenInterpolation,
+  ThemeProps,
+  DefaultTheme,
+} from 'styled-components';
 
-interface UploadProps {
+interface UploadProps extends ThemeProps<DefaultTheme> {
   isDragActive: boolean;
   isDragReject: boolean;
   refKey?: string;
@@ -9,11 +14,11 @@ interface UploadProps {
 }
 
 const dragActive = css`
-  border-color: #12a454;
+  border-color: ${props => props.theme.colors.message.success};
 `;
 
 const dragReject = css`
-  border-color: #e83f5b;
+  border-color: ${props => props.theme.colors.message.error};
 `;
 
 export const DropContainer = styled.div.attrs({
@@ -25,18 +30,17 @@ export const DropContainer = styled.div.attrs({
 
   transition: height 0.2s ease;
 
-  ${(props: UploadProps): false | FlattenSimpleInterpolation =>
+  ${(
+    props: UploadProps,
+  ): false | FlattenInterpolation<ThemeProps<DefaultTheme>> =>
     props.isDragActive && dragActive}
 
-  ${(props: UploadProps): false | FlattenSimpleInterpolation =>
-    props.isDragReject && dragReject}
+  ${(
+    props: UploadProps,
+  ): false | FlattenInterpolation<ThemeProps<DefaultTheme>> => {
+    return props.isDragReject && dragReject;
+  }}
 `;
-
-const messageColors = {
-  default: '#5636D3',
-  error: '#e83f5b',
-  success: '#12a454',
-};
 
 export const UploadMessage = styled.p`
   display: flex;
@@ -44,7 +48,8 @@ export const UploadMessage = styled.p`
   line-height: 24px;
   padding: 48px 0;
 
-  color: ${({ type }: UploadProps) => messageColors[type || 'default']};
+  color: ${({ type, theme }: UploadProps) =>
+    theme.colors.message[type || 'default']};
 
   justify-content: center;
   align-items: center;
