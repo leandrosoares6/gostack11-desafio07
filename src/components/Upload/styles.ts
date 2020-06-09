@@ -14,11 +14,12 @@ interface UploadProps extends ThemeProps<DefaultTheme> {
 }
 
 const dragActive = css`
-  border-color: ${props => props.theme.colors.message.success};
+  border-color: ${props =>
+    props.theme.colors.components.upload.message.success};
 `;
 
 const dragReject = css`
-  border-color: ${props => props.theme.colors.message.error};
+  border-color: ${props => props.theme.colors.components.upload.message.error};
 `;
 
 export const DropContainer = styled.div.attrs({
@@ -49,7 +50,7 @@ export const UploadMessage = styled.p`
   padding: 48px 0;
 
   color: ${({ type, theme }: UploadProps) =>
-    theme.colors.message[type || 'default']};
+    theme.colors.components.upload.message[type || 'default']};
 
   justify-content: center;
   align-items: center;

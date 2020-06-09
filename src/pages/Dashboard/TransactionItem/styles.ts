@@ -8,22 +8,26 @@ export const Container = styled.div`
   small {
     padding: 20px 32px;
     border: 0;
-    background: #fff;
+    background: ${props =>
+      props.theme.colors.pages.dashboard.dashboard_item.background};
     font-size: 16px;
     font-weight: normal;
-    color: #969cb3;
+    color: ${props => props.theme.colors.text};
     text-align: left;
 
     &.title {
-      color: #363f5f;
+      color: ${props =>
+        props.theme.colors.pages.dashboard.dashboard_item.title_color};
     }
 
     &.income {
-      color: #12a454;
+      color: ${props =>
+        props.theme.colors.pages.dashboard.dashboard_item.income_color};
     }
 
     &.outcome {
-      color: #e83f5b;
+      color: ${props =>
+        props.theme.colors.pages.dashboard.dashboard_item.outcome_color};
     }
   }
 

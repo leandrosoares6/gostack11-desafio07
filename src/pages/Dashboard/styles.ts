@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { ThemeProps, DefaultTheme } from 'styled-components';
 
 import ReactPlaceholder from 'react-placeholder';
 import 'react-placeholder/lib/reactPlaceholder.css';
 
-interface CardProps {
+interface CardProps extends ThemeProps<DefaultTheme> {
   total?: boolean;
 }
 
@@ -16,7 +16,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   font-size: 48px;
-  color: #3a3a3a;
+  color: ${props => props.theme.colors.pages.dashboard.title_color};
 `;
 
 export const CardContainer = styled.section`
@@ -27,10 +27,16 @@ export const CardContainer = styled.section`
 `;
 
 export const Card = styled.div`
-  background: ${({ total }: CardProps): string => (total ? '#FF872C' : '#fff')};
+  background: ${({ total, theme }: CardProps): string =>
+    total
+      ? `${theme.colors.pages.dashboard.cards.background_total}`
+      : `${theme.colors.pages.dashboard.cards.background}`};
   padding: 22px 32px;
   border-radius: 5px;
-  color: ${({ total }: CardProps): string => (total ? '#fff' : '#363F5F')};
+  color: ${({ total, theme }: CardProps): string =>
+    total
+      ? `${theme.colors.pages.dashboard.cards.color_total}`
+      : `${theme.colors.pages.dashboard.cards.color}`};
 
   header {
     display: flex;
@@ -66,7 +72,7 @@ export const TableGrid = styled.div`
     grid-template-columns: repeat(4, 1fr);
 
     strong {
-      color: #969cb3;
+      color: ${props => props.theme.colors.text};
       font-weight: normal;
       padding: 20px 32px;
       text-align: left;

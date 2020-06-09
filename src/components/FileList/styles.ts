@@ -7,7 +7,7 @@ export const Container = styled.ul`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #444;
+    color: ${props => props.theme.colors.components.file_list.filename_color};
 
     & + li {
       margin-top: 15px;
@@ -25,8 +25,10 @@ export const FileInfo = styled.div`
     padding: 3px 16px;
     border: 0;
     border-radius: 4px;
-    background: #e83f5b;
-    color: #fff;
+    background: ${props =>
+      props.theme.colors.components.file_list.remove_button.background};
+    color: ${props =>
+      props.theme.colors.components.file_list.remove_button.color};
     margin-left: 5px;
     cursor: pointer;
   }
@@ -38,7 +40,7 @@ export const FileInfo = styled.div`
 
     span {
       font-size: 12px;
-      color: #999;
+      color: ${props => props.theme.colors.components.file_list.filesize_color};
       margin-top: 5px;
     }
   }

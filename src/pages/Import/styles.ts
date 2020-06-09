@@ -12,12 +12,13 @@ export const Title = styled.h1`
   font-weight: 500;
   font-size: 36px;
   line-height: 54px;
-  color: #363f5f;
+  color: ${props => props.theme.colors.pages.import.title_color};
   text-align: center;
 `;
 
 export const ImportFileContainer = styled.section`
-  background: #fff;
+  background: ${props =>
+    props.theme.colors.pages.import.file_container_background};
   margin-top: 40px;
   border-radius: 5px;
   padding: 64px;
@@ -34,7 +35,7 @@ export const Footer = styled.section`
     align-items: center;
     font-size: 12px;
     line-height: 18px;
-    color: #969cb3;
+    color: ${props => props.theme.colors.pages.import.alert_color};
 
     img {
       margin-right: 5px;
