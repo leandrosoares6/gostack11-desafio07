@@ -1,4 +1,10 @@
-import React, { useContext, useState, createContext, useCallback } from 'react';
+import React, {
+  useContext,
+  useState,
+  createContext,
+  useCallback,
+  useEffect,
+} from 'react';
 
 import { DefaultTheme } from 'styled-components';
 
@@ -14,7 +20,7 @@ const ThemeContext = createContext<ThemeContextData>({} as ThemeContextData);
 
 const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = useState<DefaultTheme>(() => {
-    const themePersisted = localStorage.getItem('@GoBarber:theme');
+    const themePersisted = localStorage.getItem('@GoFinances:theme');
 
     if (themePersisted) {
       return JSON.parse(themePersisted);
@@ -22,6 +28,10 @@ const ThemeProvider: React.FC = ({ children }) => {
 
     return light;
   });
+
+  useEffect(() => {
+    localStorage.setItem('@GoFinances:theme', JSON.stringify(theme));
+  }, [theme]);
 
   const toggleTheme = useCallback(() => {
     setTheme(oldTheme => (oldTheme.title === 'light' ? dark : light));

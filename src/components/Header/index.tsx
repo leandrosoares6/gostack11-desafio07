@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
 
   const { toggleTheme } = useTheme();
 
-  const { colors } = useContext(ThemeContext);
+  const { colors, title } = useContext(ThemeContext);
 
   return (
     <Container size={size}>
@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
       </header>
       <Switch
         onChange={toggleTheme}
-        checked={false}
+        checked={title === 'dark'}
         checkedIcon={false}
         uncheckedIcon={false}
         height={10}
