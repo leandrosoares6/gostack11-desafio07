@@ -1,5 +1,7 @@
 import styled, { ThemeProps, DefaultTheme } from 'styled-components';
 
+import Skeleton from 'react-loading-skeleton';
+
 import ReactPlaceholder from 'react-placeholder';
 import 'react-placeholder/lib/reactPlaceholder.css';
 
@@ -24,6 +26,10 @@ export const CardContainer = styled.section`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 32px;
   margin-top: -150px;
+`;
+
+export const CardSkeleton = styled(Skeleton)`
+  height: 140px;
 `;
 
 export const Card = styled.div`
@@ -80,4 +86,13 @@ export const TableGrid = styled.div`
       line-height: 24px;
     }
   }
+
+  span {
+    border-radius: 8px;
+  }
+`;
+
+export const TransactionItemSkeleton = styled(Skeleton)`
+  height: 60px;
+  margin-bottom: 7px;
 `;
