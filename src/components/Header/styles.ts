@@ -12,6 +12,8 @@ interface LinkWithSeletedProps extends LinkProps {
 export const Container = styled.div<ContainerProps>`
   background: ${props => props.theme.colors.primary};
   padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
 
   header {
     width: 1120px;
@@ -37,6 +39,10 @@ export const Container = styled.div<ContainerProps>`
         }
       }
     }
+  }
+
+  div {
+    margin-right: 30px;
   }
 `;
 
